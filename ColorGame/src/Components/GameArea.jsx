@@ -43,14 +43,24 @@ const GameArea = () => {
           console.log('Correct!');
           pushOptions();
         } else {
-          setScore(score - 1);
-          console.log('Wrong!');
-          pushOptions();
+            if (score === 0) {
+                setScore(0);
+                console.log('You lose!');
+                pushOptions();
+            } else {
+                setScore(score - 1);
+                console.log('Wrong!');
+                pushOptions();
+            }
         }
 
       }
 
-      console.log(colors);
+      const restartGame = () => {
+        setScore(0);
+        pushOptions();
+    }
+
 
   return (
     <div>
@@ -66,7 +76,7 @@ const GameArea = () => {
         </div>
         <p>{/* data-testid = "status" */}Correct!</p>
         <p className='scoreDisplay'>{/* data-testid = "score" */}Score: {score}</p>
-        <button className='startBtn'>New Game</button>
+        <button className='startBtn' onClick = {restartGame}>New Game</button>
 
     </div>
   )

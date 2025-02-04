@@ -23,6 +23,12 @@
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.colorOption:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 6px 20px rgba(0, 0, 0, 0.19);
 }
 
 .startBtn {
@@ -35,6 +41,7 @@
   color: #fff;
   font-size: 1.2rem;
   cursor: pointer;
+  transition: all 0.3s ease-in-out;
 }
 
 .startBtn:hover {
@@ -42,6 +49,7 @@
   border-color: #3498DB;
   animation: identifier 0.3s;
   transform: scale(1.1);
+  
 }
 
 .scoreDisplay {
@@ -59,6 +67,14 @@
     transform: scale(1.1);
     background-color: #3498DB;
   }
-  
+}
+
+@keyframes colorOptionAnimation {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.1);
+  }
 }
 
