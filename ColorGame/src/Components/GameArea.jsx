@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from 'react'
 import '../App.css'
-import { use } from 'react';
 
 const GameArea = () => {
     const [score, setScore] = useState(0);
@@ -24,7 +23,7 @@ const GameArea = () => {
         }
         setColors(colours);
       }
-    
+
       useEffect(() => {
         pushOptions();
       }, []);
@@ -36,6 +35,20 @@ const GameArea = () => {
         }
       }, [colors]);
 
+      const confirmColor = (e) => {
+        const tColor = document.getElementsByClassName('colorDisplay')[0].style.backgroundColor;
+
+        if (e.target.style.backgroundColor === tColor) {
+          setScore(score + 1);
+          console.log('Correct!');
+          pushOptions();
+        } else {
+          setScore(score - 1);
+          console.log('Wrong!');
+          pushOptions();
+        }
+
+      }
 
       console.log(colors);
 
@@ -47,7 +60,7 @@ const GameArea = () => {
         </div>
         <div>
         {colors.map((color, index) => {
-          return <div key={index} className='colorOption' style={{backgroundColor: color}}></div>
+          return <div key={index} className='colorOption' onClick={confirmColor} style={{backgroundColor: color}}></div>
         })}
 
         </div>
