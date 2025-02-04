@@ -65,6 +65,7 @@ const GameArea = () => {
       }
 
       const restartGame = () => {
+        setStatus('');
         setScore(0);
         pushOptions();
     }
