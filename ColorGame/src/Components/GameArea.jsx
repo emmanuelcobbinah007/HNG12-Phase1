@@ -5,6 +5,7 @@ import { use } from 'react';
 const GameArea = () => {
     const [score, setScore] = useState(0);
     const [colors, setColors] = useState([]);
+    const [targetColor, setTargetColor] = useState('');
 
     const colorArray = [
         "#FF5733", "#33FF57", "#3357FF", "#F39C12", "#8E44AD", "#16A085", "#D35400", "#2C3E50", "#E74C3C", "#27AE60",
@@ -21,25 +22,33 @@ const GameArea = () => {
           const randomColor = colorArrayCopy[Math.floor(Math.random() * colorArrayCopy.length)];
           colours.push(randomColor);
         }
-
         setColors(colours);
       }
-
-
+    
       useEffect(() => {
         pushOptions();
-      }, [])
+      }, []);
+    
+      useEffect(() => {
+        if (colors.length > 0) {
+          const randomTargetColor = colors[Math.floor(Math.random() * colors.length)];
+          setTargetColor(randomTargetColor);
+        }
+      }, [colors]);
+
+
+      console.log(colors);
 
   return (
     <div>
-        <div className='colorDisplay' data-testid = "colorBox"></div>
+        <div className='colorDisplay' style={{backgroundColor: targetColor}} data-testid = "colorBox"></div>
         <div>
             <h2>Guess The Current Color</h2>
         </div>
         <div>
-            {colors.map((color, index) => {
-                return <div key={index} className='colorOption' style={{backgroundColor: color}}></div>
-            } )}
+        {colors.map((color, index) => {
+          return <div key={index} className='colorOption' style={{backgroundColor: color}}></div>
+        })}
 
         </div>
         <p>{/* data-testid = "status" */}Correct!</p>
@@ -50,4 +59,4 @@ const GameArea = () => {
   )
 }
 
-export default GameArea
+export default GameArea;
